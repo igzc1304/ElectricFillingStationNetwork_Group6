@@ -1,8 +1,11 @@
 package org.example;
 
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StepDefinitions {
@@ -16,7 +19,7 @@ public class StepDefinitions {
         clientManager = new ClientManager();
     }
 
-    // --- Szenario 1: Location erstellen ---
+    // --- Owner Perspective: Manage Locations ---
 
     @Given("there is no location with id {string}")
     public void thereIsNoLocationWithId(String id) {
@@ -33,7 +36,7 @@ public class StepDefinitions {
         assertThat(locationManager.exists(id)).isTrue();
     }
 
-    // --- Szenario 2: Charger hinzufügen ---
+    // --- Owner Perspective: Manage Charging Points ---
 
     @Given("a location with id {string} exists")
     public void aLocationWithIdExists(String id) {
@@ -43,9 +46,9 @@ public class StepDefinitions {
         assertThat(locationManager.exists(id)).isTrue();
     }
 
-    @Given("the location has no charging points")
+    @And("the location has no charging points")
     public void theLocationHasNoChargingPoints() {
-        // nichts extra nötig, neue Location hat leere Liste
+        // Eine neue Location hat standardmäßig keine Charging Points -> nichts zu tun
     }
 
     @When("I add a charging point with id {string} of type {string} to location {string}")
@@ -56,23 +59,24 @@ public class StepDefinitions {
     @Then("the location {string} should have {int} charging point")
     public void theLocationShouldHaveChargingPoint(String locId, Integer expectedCount) {
         Location location = locationManager.getLocation(locId);
+        assertThat(location).isNotNull();
         assertThat(location.getChargingPoints().size()).isEqualTo(expectedCount);
     }
 
-    // --- Szenario 3: Client registrieren ---
+    // --- User Perspective: EV Driver Account (Clients) ---
 
-    @Given("there is no client with id {string}")
-    public void thereIsNoClientWithId(String clientId) {
-        assertThat(clientManager.existsClient(clientId)).isFalse();
+    @Given("there is no EV driver with id {string}")
+    public void thereIsNoEvDriverWithId(String evDriverId) {
+        assertThat(clientManager.existsClient(evDriverId)).isFalse();
     }
 
-    @When("I register a client with id {string} and name {string} and email {string}")
-    public void iRegisterAClientWithIdAndNameAndEmail(String id, String name, String email) {
+    @When("I register an EV driver with id {string} and name {string} and email {string}")
+    public void iRegisterAnEvDriverWithIdAndNameAndEmail(String id, String name, String email) {
         clientManager.registerClient(id, name, email);
     }
 
-    @Then("the system should contain a client with id {string}")
-    public void theSystemShouldContainAClientWithId(String id) {
+    @Then("the system should contain an EV driver with id {string}")
+    public void theSystemShouldContainAnEvDriverWithId(String id) {
         assertThat(clientManager.existsClient(id)).isTrue();
         EvDriver client = clientManager.getClient(id);
         assertThat(client).isNotNull();
