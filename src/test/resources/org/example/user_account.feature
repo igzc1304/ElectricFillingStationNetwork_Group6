@@ -4,6 +4,7 @@ Feature: Register EV driver account
   I want to register once
   So that I can use the charging network
 
+  @useuser_find_station.featurer
   Scenario: Register a new EV driver account
     Given there is no EV driver with id "CUST-1"
     When I register an EV driver with id "CUST-1" and name "Ivan" and email "ivan@example.com"
