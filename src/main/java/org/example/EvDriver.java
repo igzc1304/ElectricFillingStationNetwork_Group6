@@ -1,10 +1,15 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EvDriver {
 
     private final String id;
     private final String name;
     private final String email;
+    private final Account account = new Account();
+    private final List<Invoice> invoices = new ArrayList<Invoice>();
 
     public EvDriver(String id, String name, String email) {
         this.id = id;
@@ -22,5 +27,13 @@ public class EvDriver {
 
     public String getEmail() {
         return email;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
 }

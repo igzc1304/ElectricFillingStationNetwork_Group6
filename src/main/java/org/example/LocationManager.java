@@ -24,7 +24,7 @@ public class LocationManager {
         if (location == null) {
             throw new IllegalArgumentException("Location " + locationId + " does not exist");
         }
-        location.addChargingPoint(new ChargingPoint(chargingPointId, type));
+        location.addChargingPoint(chargingPointId, type);
     }
 
 
