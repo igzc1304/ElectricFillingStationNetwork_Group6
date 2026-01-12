@@ -39,10 +39,10 @@ public class PriceModel {
 
     @Override
     public String toString() {
-        return "PriceModel{" +
-                "id='" + id + '\'' +
-                ", pricePerKwhAC=" + pricePerKwhAC +
-                ", pricePerKwhDC=" + pricePerKwhDC +
+        return "PriceModel{" + "\n" +
+                "\tid='" + id + '\'' + "\n" +
+                "\tpricePerKwhAC=" + pricePerKwhAC + "\n" +
+                "\tpricePerKwhDC=" + pricePerKwhDC + "\n" +
                 '}';
     }
 

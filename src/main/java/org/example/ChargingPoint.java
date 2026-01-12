@@ -64,4 +64,15 @@ public class ChargingPoint {
         this.currentChargingSession = null;
         return finishedChargingSession;
     }
+
+    @Override
+    public String toString() {
+        return "ChargingPoint{" + "\n" +
+                "\tid='" + id + '\'' + "\n" +
+                "\ttype='" + type + '\'' + "\n" +
+                "\tpastChargingSessions=" + pastChargingSessions + "\n" +
+                "\tcurrentChargingSession=" + currentChargingSession + "\n" +
+                "\tpriceModel=" + priceModel + "\n" +
+                '}';
+    }
 }

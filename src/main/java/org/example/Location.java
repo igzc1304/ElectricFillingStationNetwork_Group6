@@ -34,4 +34,14 @@ public class Location {
     public void addChargingPoint(String chargingPointId, String type) {
         chargingPoints.add(new ChargingPoint(chargingPointId, type, this.priceModel));
     }
+
+    @Override
+    public String toString() {
+        return "Location{" + "\n" +
+                "\tid='" + id + '\'' + "\n" +
+                "\tname='" + name + '\'' + "\n" +
+                "\tchargingPoints=" + chargingPoints + "\n" +
+                "\tpriceModel=" + priceModel + "\n" +
+                '}';
+    }
 }

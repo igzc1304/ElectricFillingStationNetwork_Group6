@@ -36,4 +36,15 @@ public class EvDriver {
     public List<Invoice> getInvoices() {
         return invoices;
     }
+
+    @Override
+    public String toString() {
+        return "EvDriver{" + "\n" +
+                "\tid='" + id + '\'' + "\n" +
+                "\tname='" + name + '\'' + "\n" +
+                "\temail='" + email + '\'' + "\n" +
+                "\taccount=" + account + "\n" +
+                "\tinvoices=" + invoices + "\n" +
+                '}';
+    }
 }

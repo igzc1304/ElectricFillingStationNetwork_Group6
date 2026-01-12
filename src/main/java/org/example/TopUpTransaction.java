@@ -31,4 +31,14 @@ public class TopUpTransaction {
     public Account getAccount() {
         return account;
     }
+
+    @Override
+    public String toString() {
+        return "TopUpTransaction{" + "\n" +
+                "\tid='" + id + '\'' + "\n" +
+                "\tamount=" + amount + "\n" +
+                "\ttimestamp=" + timestamp + "\n" +
+                "\taccount=" + account + "\n" +
+                '}';
+    }
 }

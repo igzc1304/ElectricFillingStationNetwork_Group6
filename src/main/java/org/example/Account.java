@@ -16,4 +16,11 @@ public class Account {
     public Double getBalance() {
         return balance;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "\n" +
+                "\tbalance=" + balance + "\n" +
+                '}';
+    }
 }

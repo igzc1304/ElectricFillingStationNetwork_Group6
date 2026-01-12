@@ -46,10 +46,10 @@ public class Invoice {
 
     @Override
     public String toString() {
-        return "Invoice{" +
-                "invoiceNumber='" + invoiceNumber + '\'' +
-                ", issueDate=" + issueDate +
-                ", totalAmount=" + totalAmount +
+        return "Invoice{" + "\n" +
+                "\tinvoiceNumber='" + invoiceNumber + '\'' + "\n" +
+                "\tissueDate=" + issueDate + "\n" +
+                "\ttotalAmount=" + totalAmount + "\n" +
                 '}';
     }
 }

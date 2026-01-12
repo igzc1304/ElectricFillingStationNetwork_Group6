@@ -64,18 +64,6 @@ public class ChargingSession {
     }
 
     @Override
-    public String toString() {
-        return "ChargingSession{" +
-                "id='" + id + '\'' +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", loadedEnergyKwh=" + loadedEnergyKwh +
-                ", totalCost=" + totalCost +
-                ", evDriver=" + evDriver +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ChargingSession that = (ChargingSession) o;
@@ -143,5 +131,19 @@ public class ChargingSession {
 
             return new ChargingSession(id, startTime, endTime, loadedEnergyKwh, totalCost, chargingType, evDriver);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ChargingSession{" +
+                "\tid='" + id + '\'' + "\n" +
+                "\tstartTime=" + startTime + "\n" +
+                "\tendTime=" + endTime + "\n" +
+                "\tloadedEnergyKwh=" + loadedEnergyKwh + "\n" +
+                "\ttotalCost=" + totalCost + "\n" +
+                "\tchargingType='" + chargingType + '\'' + "\n" +
+                "\tevDriver=" + evDriver + "\n" +
+                "\tinvoice=" + invoice + "\n" +
+                '}';
     }
 }
