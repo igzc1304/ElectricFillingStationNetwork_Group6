@@ -6,10 +6,19 @@ public class Account {
     public Account() {}
 
     public void topUp(Double amount) {
+        if (amount == null || amount <= 0) {
+            throw new IllegalArgumentException("Top-up amount must be > 0");
+        }
         this.balance += amount;
     }
 
     public void deduct(Double amount) {
+        if (amount == null || amount < 0) {
+            throw new IllegalArgumentException("Deduction amount must be >= 0");
+        }
+        if (amount > this.balance) {
+            throw new IllegalArgumentException("Insufficient balance");
+        }
         this.balance -= amount;
     }
 

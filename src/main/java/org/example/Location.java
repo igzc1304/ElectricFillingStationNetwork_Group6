@@ -1,13 +1,12 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Location {
 
     private final String id;
-    private final String name;
-    private final List<ChargingPoint> chargingPoints = new ArrayList<>();
+    private String name;
+    private final Map<String, ChargingPoint> chargingPoints = new LinkedHashMap<>();
     private final PriceModel priceModel;
 
     public Location(String id, String name) {
@@ -27,12 +26,34 @@ public class Location {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Location name must not be blank");
+        }
+        this.name = name;
+    }
+
     public List<ChargingPoint> getChargingPoints() {
-        return chargingPoints;
+        return new ArrayList<>(chargingPoints.values());
     }
 
     public void addChargingPoint(String chargingPointId, String type) {
-        chargingPoints.add(new ChargingPoint(chargingPointId, type, this.priceModel));
+        if (chargingPoints.containsKey(chargingPointId)) {
+            throw new IllegalArgumentException("ChargingPoint with id " + chargingPointId + " already exists at location " + id);
+        }
+        chargingPoints.put(chargingPointId, new ChargingPoint(chargingPointId, type, this.priceModel, this));
+    }
+
+    public ChargingPoint getChargingPoint(String chargingPointId) {
+        return chargingPoints.get(chargingPointId);
+    }
+
+    public void removeChargingPoint(String chargingPointId) {
+        if (!chargingPoints.containsKey(chargingPointId)) {
+            throw new IllegalArgumentException("ChargingPoint " + chargingPointId + " does not exist at location " + id);
+        }
+        chargingPoints.remove(chargingPointId);
     }
 
     @Override
@@ -40,7 +61,7 @@ public class Location {
         return "Location{" + "\n" +
                 "\tid='" + id + '\'' + "\n" +
                 "\tname='" + name + '\'' + "\n" +
-                "\tchargingPoints=" + chargingPoints + "\n" +
+                "\tchargingPoints=" + chargingPoints.values() + "\n" +
                 "\tpriceModel=" + priceModel + "\n" +
                 '}';
     }

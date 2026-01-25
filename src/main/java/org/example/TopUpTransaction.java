@@ -7,13 +7,16 @@ public class TopUpTransaction {
     private final Double amount;
     private final LocalDateTime timestamp;
     private final Account account;
+    private final EvDriver evDriver;
 
-    public TopUpTransaction(String id, Double amount, LocalDateTime timestamp, Account account) {
+    public TopUpTransaction(String id, Double amount, LocalDateTime timestamp, EvDriver evDriver) {
         this.id = id;
         this.amount = amount;
         this.timestamp = timestamp;
-        this.account = account;
+        this.evDriver = evDriver;
+        this.account = evDriver.getAccount();
         this.account.topUp(amount);
+        evDriver.getTopUps().add(this);
     }
 
     public String getId() {
@@ -30,6 +33,10 @@ public class TopUpTransaction {
 
     public Account getAccount() {
         return account;
+    }
+
+    public EvDriver getEvDriver() {
+        return evDriver;
     }
 
     @Override

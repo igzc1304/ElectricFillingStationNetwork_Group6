@@ -9,7 +9,8 @@ public class EvDriver {
     private final String name;
     private final String email;
     private final Account account = new Account();
-    private final List<Invoice> invoices = new ArrayList<Invoice>();
+    private final List<TopUpTransaction> topUps = new ArrayList<>();
+    private final List<ChargingSession> chargingSessions = new ArrayList<>();
 
     public EvDriver(String id, String name, String email) {
         this.id = id;
@@ -33,8 +34,12 @@ public class EvDriver {
         return account;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
+    public List<TopUpTransaction> getTopUps() {
+        return topUps;
+    }
+
+    public List<ChargingSession> getChargingSessions() {
+        return chargingSessions;
     }
 
     @Override
@@ -44,7 +49,8 @@ public class EvDriver {
                 "\tname='" + name + '\'' + "\n" +
                 "\temail='" + email + '\'' + "\n" +
                 "\taccount=" + account + "\n" +
-                "\tinvoices=" + invoices + "\n" +
+                "\ttopUps=" + topUps + "\n" +
+                "\tchargingSessions=" + chargingSessions + "\n" +
                 '}';
     }
 }
